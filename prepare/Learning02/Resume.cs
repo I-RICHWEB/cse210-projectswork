@@ -1,15 +1,15 @@
 using System;
 
 public class Resume {
-    public string name;
-    public List<Job> joblist = new List<Job>();
+    public string _name;
+    public List<Job> _joblist = new List<Job>();
 
     public void DisplayResume (){
         Console.WriteLine();
-        Console.WriteLine($"Name: {name}");
+        Console.WriteLine($"Name: {_name}");
         
         Console.WriteLine("Jobs:");
-        foreach ( Job j in joblist){
+        foreach ( Job j in _joblist){
             j.DisplayJob();
         }
         Console.WriteLine();

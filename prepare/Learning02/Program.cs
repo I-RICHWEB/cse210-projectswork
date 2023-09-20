@@ -17,9 +17,9 @@ class Program
         job1._endYear = 2022;
 
         Resume resume1 = new Resume();
-        resume1.name = "Uyiosa Richmond Izekor";
-        resume1.joblist.Add(job);
-        resume1.joblist.Add(job1);
+        resume1._name = "Uyiosa Richmond Izekor";
+        resume1._joblist.Add(job);
+        resume1._joblist.Add(job1);
 
         resume1.DisplayResume();
     }
