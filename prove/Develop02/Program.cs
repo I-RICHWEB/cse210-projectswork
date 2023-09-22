@@ -38,7 +38,8 @@ class Program
 
             while (respond != "quit"){
                 Prompt promptGen = new Prompt();
-                Console.WriteLine(promptGen.GenPrompt());
+                string prompt = promptGen.GenPrompt();
+                Console.WriteLine(prompt);
                 Console.Write(">");
                 respond = Console.ReadLine();
 
