@@ -8,10 +8,15 @@ public class Journal {
 
 
     public void AddEntry(Entry newEntries){
-        _entries.Add(newEntries);
+        Entry entry = new Entry();
+        entry._date = newEntries._date;
+        entry._prompt = newEntries._prompt;
+        entry._response = newEntries._response;
+        _entries.Add(entry);
     }
 
     public void DisplayJournal(){
+        Console.WriteLine(_entries.Count);
         foreach (Entry entries in _entries){
             string date = entries._date;
             string prompt = entries._prompt;
@@ -42,16 +47,20 @@ public class Journal {
     public void LoadJournal(){
         Console.Write("Enter file name: ");
         _fileName = Console.ReadLine();
-        _entries.Clear();
-        string[] lines = System.IO.File.ReadAllLines(_fileName + ".txt");
-        foreach( string line in lines){
-            string[] parts = line.Split("~");
-            Entry entry = new Entry();
-            entry._date = parts[0];
-            entry._prompt = parts[1];
-            entry._response = parts[2];
+        if (File.Exists(_fileName)){
+            _entries.Clear();
+            string[] lines = File.ReadAllLines(_fileName + ".txt");
+            foreach( string line in lines){
+                string[] parts = line.Split("~");
+                Entry entry = new Entry();
+                entry._date = parts[0];
+                entry._prompt = parts[1];
+                entry._response = parts[2];
 
-            AddEntry(entry);
+                AddEntry(entry);
+            }
+        }else {
+            Console.WriteLine("Oops! The file does not exist.");
         }
         Console.WriteLine("Your journal has been loaded. Choose display option to view journal.");
     }

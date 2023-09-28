@@ -43,13 +43,14 @@ class Program
                 Console.Write(">");
                 respond = Console.ReadLine();
 
-                Entry entry = new Entry();
-                entry._date = Date();
-                entry._prompt = prompt;
-                entry._response = respond;
+                Entry entryNew = new Entry();
+                entryNew._date = Date();
+                entryNew._prompt = prompt;
+                entryNew._response = respond;
 
                 Journal journal = new Journal();
-                journal.AddEntry(entry);
+                journal._entries.Add(entryNew);
+                
             }
 
         }

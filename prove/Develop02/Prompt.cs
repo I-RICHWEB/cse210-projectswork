@@ -8,7 +8,7 @@ public class Prompt {
 
     public string GenPrompt(){
         int oldRandomNum;
-        string[] lines = System.IO.File.ReadAllLines(_promptFileName);
+        string[] lines = File.ReadAllLines(_promptFileName);
         foreach (string line in lines){
             _promptList.Add(line);
         }
