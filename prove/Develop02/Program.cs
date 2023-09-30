@@ -35,6 +35,7 @@ class Program
         static void WriteOption(){
             string respond = "";
             Console.WriteLine("Respond to the prompts as your journal. Type in (quit) when done.");
+            Journal journal = new Journal();
 
             while (respond != "quit"){
                 Prompt promptGen = new Prompt();
@@ -43,21 +44,24 @@ class Program
                 Console.Write(">");
                 respond = Console.ReadLine();
 
-                Entry entryNew = new Entry();
-                entryNew._date = Date();
-                entryNew._prompt = prompt;
-                entryNew._response = respond;
-
-                Journal journal = new Journal();
-                journal._entries.Add(entryNew);
-                
+                if (respond != "quit"){
+                    Entry entryNew = new Entry
+                    {
+                        _date = Date(),
+                        _prompt = prompt,
+                        _response = respond
+                    };
+                                   
+                    journal.AddEntry(entryNew);
+                    
+                }
             }
 
         }
 
         static void DisplayOption(){
-            Journal journal = new Journal();
-            journal.DisplayJournal();
+            Journal j = new Journal();
+            j.DisplayJournal();
         }
 
         static void SaveOption(){

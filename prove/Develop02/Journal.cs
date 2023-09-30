@@ -8,25 +8,12 @@ public class Journal {
 
 
     public void AddEntry(Entry newEntries){
-        Entry entry = new Entry();
-        entry._date = newEntries._date;
-        entry._prompt = newEntries._prompt;
-        entry._response = newEntries._response;
-        _entries.Add(entry);
+        _entries.Add(newEntries);
     }
 
     public void DisplayJournal(){
         Console.WriteLine(_entries.Count);
-        foreach (Entry entries in _entries){
-            string date = entries._date;
-            string prompt = entries._prompt;
-            string respond = entries._response;
-
-            Entry entry = new Entry();
-            entry._date = date;
-            entry._prompt = prompt;
-            entry._response = respond;
-
+        foreach (Entry entry in _entries){
             entry.Display();
         }
     }
@@ -47,7 +34,7 @@ public class Journal {
     public void LoadJournal(){
         Console.Write("Enter file name: ");
         _fileName = Console.ReadLine();
-        if (File.Exists(_fileName)){
+        if (File.Exists(_fileName + ".txt")){
             _entries.Clear();
             string[] lines = File.ReadAllLines(_fileName + ".txt");
             foreach( string line in lines){
@@ -59,6 +46,7 @@ public class Journal {
 
                 AddEntry(entry);
             }
+            DisplayJournal();
         }else {
             Console.WriteLine("Oops! The file does not exist.");
         }
