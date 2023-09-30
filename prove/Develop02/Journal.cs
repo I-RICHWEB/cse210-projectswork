@@ -12,14 +12,17 @@ public class Journal {
     }
 
     public void DisplayJournal(){
-        Console.WriteLine(_entries.Count);
-        foreach (Entry entry in _entries){
-            entry.Display();
+        int i = 0; 
+        foreach (Entry jentry in _entries)
+        {
+            i ++;
+            Console.Write($"{i}. ");
+            jentry.Display();
         }
     }
 
     public void SaveJournal(){
-        Console.Write("Enter file name: ");
+        Console.Write("Enter file name without file type: ");
         _fileName = Console.ReadLine();
         using (StreamWriter theFile = new StreamWriter(_fileName + ".txt")){
             foreach (Entry entry in _entries) {
@@ -32,7 +35,7 @@ public class Journal {
     }
 
     public void LoadJournal(){
-        Console.Write("Enter file name: ");
+        Console.Write("Enter file name without file type: ");
         _fileName = Console.ReadLine();
         if (File.Exists(_fileName + ".txt")){
             _entries.Clear();
@@ -50,7 +53,36 @@ public class Journal {
         }else {
             Console.WriteLine("Oops! The file does not exist.");
         }
-        Console.WriteLine("Your journal has been loaded. Choose display option to view journal.");
+    }
+
+    public void EditJournal()
+    {
+        LoadJournal();
+        DisplayJournal();
+        Console.Write("Enter the entry number you want to edit: ");
+        int singleEntry = int.Parse(Console.ReadLine());
+        int theIndex = singleEntry - 1;
+        Entry theEntry = _entries[theIndex];
+        string date = theEntry._date;
+        string prom = theEntry._prompt;
+        string oldrespond = theEntry._response;
+        Console.WriteLine($"Date: {date}. Prompt: {prom}.");
+        Console.WriteLine(oldrespond);
+        Console.WriteLine();
+        Console.WriteLine("Enter your new respond");
+        Console.Write(">");
+        string theNewRespond = Console.ReadLine();
+        Entry editEntry = new()
+        {
+            _date = date,
+            _prompt = prom,
+            _response = theNewRespond
+        };
+        _entries[theIndex] = editEntry;
+        Console.WriteLine();
+        Console.WriteLine("Your journal has been updated. Click Save journal to save it.");
+        Console.WriteLine();
+
     }
 
 
