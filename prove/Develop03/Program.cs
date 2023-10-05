@@ -26,28 +26,26 @@ class Program
                 scripture.DisplayScrip(r);
                 Console.WriteLine();
                 
-                int wtc = scripture.GetWordTextCount();
-                Console.WriteLine(wtc);
-                
-                int rtc = scripture.GetRemoveTextCount();
-                Console.WriteLine(rtc);
+                int wtc = scripture.GetWordTextCount();                
+                int rtc = 0;
 
                 Console.WriteLine("Click Enter button to hide random words, or type (quit) to cancel:");
                 Console.Write(">");
                 string quit = Console.ReadLine();
                 
-                while ( rtc <= wtc && quit != "quit"){
+                while ( rtc < wtc && quit != "quit"){
                     Console.Clear();
 
                     scripture.HideScriptureWords(r);
 
-                    Console.WriteLine(rtc);
-                    
                     Console.WriteLine("Click Enter button to hide random words, or type (quit) to cancel:");
                     Console.Write(">");
                     quit = Console.ReadLine();
+
+                    rtc = scripture.GetRemoveTextCount();
                 }
-                Console.WriteLine(rtc);
+                
+                scripture.ClearRemoveTextList();
             }
             else if (option == "2")
             {
@@ -57,11 +55,14 @@ class Program
                 scripture.DisplayScrip(r);
                 Console.WriteLine();
 
+                int wtc = scripture.GetWordTextCount();
+                int rtc = 0;
+
                 Console.WriteLine("Click Enter button to hide random words, or type (quit) to cancel:");
                 Console.Write(">");
                 string quit = Console.ReadLine();
                 
-                while ( quit != "quit"){
+                while ( rtc < wtc && quit != "quit"){
                     Console.Clear();
 
                     scripture.HideScriptureWords(r);
@@ -69,8 +70,11 @@ class Program
                     Console.WriteLine("Click Enter button to hide random words, or type (quit) to cancel:");
                     Console.Write(">");
                     quit = Console.ReadLine();
+
+                    rtc = scripture.GetRemoveTextCount();
                 }
 
+                scripture.ClearRemoveTextList();
                 
             }
             else if (option == "3")
@@ -82,11 +86,14 @@ class Program
                 scripture.DisplayScrip(r);
                 Console.WriteLine();
 
+                int wtc = scripture.GetWordTextCount();
+                int rtc = 0;
+
                 Console.WriteLine("Click Enter button to hide random words, or type (quit) to cancel:");
                 Console.Write(">");
                 string quit = Console.ReadLine();
                 
-                while ( quit != "quit"){
+                while ( rtc < wtc && quit != "quit"){
                     Console.Clear();
 
                     scripture.HideScriptureWords(r);
@@ -94,6 +101,8 @@ class Program
                     Console.WriteLine("Click Enter button to hide random words, or type (quit) to cancel:");
                     Console.Write(">");
                     quit = Console.ReadLine();
+
+                    rtc = scripture.GetRemoveTextCount();
                 }
                
             }

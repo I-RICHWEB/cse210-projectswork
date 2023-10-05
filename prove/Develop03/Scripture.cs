@@ -148,8 +148,12 @@ public class Scripture
         string[] textPart = theText.Split(" ");
 
         for(int i = 0; i < textPart.Length; i++){
-            Words newWord = new(textPart[i]);
+            if (textPart[i] != ""){
+                Words newWord = new(textPart[i]);
             _wordList.Add(newWord);
+            }else{
+                continue;
+            }
         }
     }
 
@@ -160,6 +164,9 @@ public class Scripture
     public int GetRemoveTextCount(){
     
         return _compare.Count;
+    }
+    public void ClearRemoveTextList(){
+        _compare.Clear();
     }
 
     private void SetDisplayTextList(){
@@ -182,31 +189,33 @@ public class Scripture
     public void HideScriptureWords(int refRan){
         Words hideInstance = new();
         int indexRange = _wordsTextList.Count;
+        int random = RandomToHide(indexRange);
         for (int j = 0; j < 3; j++){
 
-            int random = RandomToHide(indexRange);
+            if (!_compare.Contains(random) && _compare.Count < _wordsTextList.Count){
 
-            while (_compare.Contains(random) && _compare.Count < _wordsTextList.Count){
+                for (int i = 0; i < _wordsTextList.Count; i++){
+
+                    string hiddenWord = _wordsTextList[i];
+
+                    if (random == i){
+
+                        if (hiddenWord != ""){
+                            _removeWord.Add(hiddenWord);
+                            string thehideWord = hideInstance.HideWord(hiddenWord);
+                            _wordsTextList.RemoveAt(i);
+                            _wordsTextList.Insert(i, thehideWord); 
+                        }else {
+                            _wordsTextList.Remove(hiddenWord);
+                        }
+                        _compare.Add(random);
+                    }               
+                    
+                }
                 random = RandomToHide(indexRange);
 
             }
-            for (int i = 0; i < _wordsTextList.Count; i++){
-
-                string hiddenWord = _wordsTextList[i];
-
-                if (random == i){
-
-                    if (hiddenWord != ""){
-                        _removeWord.Add(hiddenWord);
-                        string thehideWord = hideInstance.HideWord(hiddenWord);
-                        _wordsTextList.RemoveAt(i);
-                        _wordsTextList.Insert(i, thehideWord);                
-                    }else {
-                        _wordsTextList.Remove(hiddenWord);
-                    }
-                    _compare.Add(random);
-                }
-            }
+            
         }
         
         Display(refRan);
