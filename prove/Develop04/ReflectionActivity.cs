@@ -19,6 +19,8 @@ public class ReflectionActivity : Activity{
         DisplayStartMessage();
         Console.Clear();
 
+        SetLists();
+
         Console.WriteLine($"Get Ready...");
         ShowSpinner(3);
         Console.WriteLine();
@@ -39,25 +41,22 @@ public class ReflectionActivity : Activity{
 
         while (DateTime.Now < endTime){
             Console.Write($"> {GetRandomQuestion()}");
-            ShowSpinner(8);
+            ShowSpinner(7);
+            Console.WriteLine();
             Console.WriteLine();
         }
         DisplayEndMessage();
 
     }
 
-    private string GetRandomPrompt(){
+    private void SetLists(){
+        //Adding items to the Prompt list.
         _prompts.Add("Think of a time when you stood up for someone else.");
         _prompts.Add("Think of a time when you did something really difficult.");
         _prompts.Add("Think of a time when you helped someone in need.");
         _prompts.Add("Think of a time when you did something truly selfless.");
-        
-        Random r = new();
-        string prompt = _prompts[r.Next(_prompts.Count)];
-        return prompt;
-    }
-    Random r = new();
-    private string GetRandomQuestion(){
+
+        //Adding items to the questions list.
         _questions.Add("Why was this experience meaningful to you?");
         _questions.Add("Have you ever done anything like this before?");
         _questions.Add("How did you get started?");
@@ -67,24 +66,31 @@ public class ReflectionActivity : Activity{
         _questions.Add("What could you learn from this experience that applies to other situations?");
         _questions.Add("What did you learn about yourself through this experience?");
         _questions.Add("How can you keep this experience in mind in the future?");
+    }
 
+    private string GetRandomPrompt(){
+       
         
-        string question = "";
+        Random r = new();
+        string prompt = _prompts[r.Next(_prompts.Count)];
+        return prompt;
+    }
+    
+    private string GetRandomQuestion(){        
+
+        Random r = new();
+            
+        int index = r.Next(_questions.Count);
+        string question = _questions[index];
+        _reload.Add(question);
+        _questions.RemoveAt(index);
 
         if (_questions.Count == 0){
             foreach (string item in _reload){
                 _questions.Add(item);
             }
             _reload.Clear();
-        }else {
-            
-            int index = r.Next(_questions.Count);
-            question = _questions[index];
-            _reload.Add(question);
-            _questions.RemoveAt(index);
         }
-
-        
 
         return question;
     }
