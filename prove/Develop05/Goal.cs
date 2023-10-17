@@ -1,9 +1,11 @@
 using System;
 
 public abstract class Goal {
-    private string _name;
-    private string _description;
-    private string _points;
+    protected string _name;
+    protected string _description;
+    protected string _points;
+    protected int _scoring = 0;
+    
 
     public Goal(){
 
@@ -18,11 +20,30 @@ public abstract class Goal {
 
     public abstract void RecordEvent();
 
-    public abstract void IsComplete();
-
-    public virtual string GetDetailsString(){
-        return "";
-    }
+    public abstract bool IsComplete();
 
     public abstract string GetStringRepresentation();
+
+    public virtual int ReturnScore(){
+        return _scoring;
+    }
+    public virtual void ClearScoring(){
+        _scoring = 0;
+    }
+
+    public virtual int GetPoints(){
+        int score = int.Parse(_points);
+        return score;
+    }
+
+    public virtual string GetDetailsString(){
+
+        return $"{_name} ({_description})";
+    }
+
+    public string GetGoalName(){
+        return _name;
+    }
+
+    
 }

@@ -2,30 +2,32 @@ using System;
 
 public class SimpleGoal : Goal{
      private bool _isComplete;
-
-
-    public SimpleGoal(string name, string desc, string points) : base(name, desc, points){
-        _isComplete = false;
+     
+    public SimpleGoal(string name, string desc, string points, bool complete = false) : base(name, desc, points){
+       _isComplete = complete;
     }
 
     public override void RecordEvent()
     {
-        throw new NotImplementedException();
+        Console.Clear();
+        if (_isComplete != true){
+            Console.WriteLine($"Congratulation you earn {_points} points.");
+            _isComplete = true;
+            _scoring = GetPoints();
+        }else {
+            Console.WriteLine("It looks like you have accomplished this goal.");
+        }
+
     }
 
-    public override void IsComplete()
+    public override bool IsComplete()
     {
-        throw new NotImplementedException();
-    }
-
-    public override string GetDetailsString()
-    {
-        throw new NotImplementedException();
+       return _isComplete;
     }
 
     public override string GetStringRepresentation()
     {
-        throw new NotImplementedException();
+        return $"SimpleGoal~~{_name}~~{_description}~~{_points}~~{_isComplete}";
     }
 }
 
