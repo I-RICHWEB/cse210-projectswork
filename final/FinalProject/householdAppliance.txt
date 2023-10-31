@@ -1,0 +1,24 @@
+Refrigerator~240.00
+Microwave~160.23
+Blender~84.93
+Slow cooker~90.00
+Toaster~65.34
+Washing machine~190.45
+Dishwasher~120.38
+Clothes dryer~270.00
+Mixer~120.45
+Oven~145.98
+Vacuum cleaner~87.32
+Rice cooker~92.99
+Coffee maker~110.99
+Iron~103.23
+Kitchen Knifes~45.99
+Food processor~88.99
+Kitchen stove~199.98
+Fan~58.36
+Freezer~230.89
+Electric kettle~67.00
+Water heating~140.65
+Hairdryer~75.88
+Juicer~44.90
+Air conditioning~155.76

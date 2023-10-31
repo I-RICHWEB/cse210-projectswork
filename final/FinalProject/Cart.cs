@@ -4,22 +4,22 @@ public class Cart{
     private string _itemName;
     private double _itemPrice;
     private int _quantity;
-    private double _total;
-    private double _salesTax;
+    private double _finalPrice;
+    
+    
 
     public Cart(string name, double price, int quantity){
         _itemName = name;
         _itemPrice = price;
         _quantity = quantity;
-        _total = 0;
-        _salesTax = 0.05;
+        _finalPrice = _itemPrice * _quantity;
     }
 
     public void DisplayCart(){
-
+        Console.WriteLine($"{_itemName, -20}{_itemPrice, -15}{_quantity, -15}{_finalPrice:0.00}");
     }
 
-    public string GetCart(){
-        return "";
+    public double GetFinalPrice(){
+        return _finalPrice;
     }
 }

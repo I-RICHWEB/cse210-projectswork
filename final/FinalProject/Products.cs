@@ -11,11 +11,11 @@ public class Products{
     }
 
     public void DisplayProduct(){
-
+        Console.WriteLine($"   {_name,-25}  $ {_price}");
     }
 
     public string GetProduct(){
-        return "";
+        return $"{_name}~{_price}";
     }
     
 }

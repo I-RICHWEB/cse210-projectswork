@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 
 
-public abstract class Bonus{
+public class Bonus{
     
     private bool _isBonus;
 
@@ -10,5 +10,4 @@ public abstract class Bonus{
         _isBonus = isBonus;
     }
 
-    public abstract bool IsBonus();
 }
